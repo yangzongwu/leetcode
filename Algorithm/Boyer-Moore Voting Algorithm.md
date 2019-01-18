@@ -20,11 +20,11 @@ Boyer-Moore majority vote algorithm(摩尔投票算法)是一种在线性时间O
 
 ##  perudocode  
 Initialize an element m and a counter i with i = 0  
-For each element x of the input sequence:  
->>if i = 0, then assign m = x and i = 1  
->>else if m = x, then assign i = i + 1  
->>else assign i = i − 1  
-Return m
+>For each element x of the input sequence:  
+>if i = 0, then assign m = x and i = 1  
+>else if m = x, then assign i = i + 1  
+>else assign i = i − 1  
+>Return m
 
 ##  题目：    
 Leetcode 169（Majority Element）  
