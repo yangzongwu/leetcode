@@ -31,3 +31,37 @@ class Solution:
                     tmp=max(tmp,rep[j]+1)
             rep.append(tmp)
         return max(rep)
+###################################################################################
+class Solution:
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+        
+        rep=[nums[0]]
+        for num in nums[1:]:
+            if num>rep[-1]:
+                rep.append(num)
+            elif num<rep[0]:
+                rep[0]=num
+            else:
+                loc=self.find_next_max_num(rep,num)
+                rep[loc]=num
+        return len(rep)
+    
+    def find_next_max_num(self,nums,target):
+        left=0
+        right=len(nums)-1
+        while right>=left:
+            mid=(left+right)//2
+            if nums[mid]==target:
+                return mid
+            elif nums[mid]>target:
+                right=mid-1
+            else:
+                left=mid+1
+        return left
+    
