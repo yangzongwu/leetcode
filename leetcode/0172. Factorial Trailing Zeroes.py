@@ -27,3 +27,11 @@ class Solution:
             rep+=n//x
             x=x*5
         return rep
+##############################second########################################
+class Solution(object):
+    def trailingZeroes(self, n):
+        rep=0
+        while n>=5:
+            n=n//5
+            rep+=n
+        return rep
