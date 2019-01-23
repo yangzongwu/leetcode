@@ -71,4 +71,20 @@ class Solution(object):
             if list_n[s]==1:
                 list_n[s*s:n:s]=[0] * len(list_n[s * s: n: s])
         return sum(list_n)
- ##
+ ###################################二刷############################################
+class Solution(object):
+    def countPrimes(self, n):
+        if n <2:
+            return 0
+        listn=[0]*(n)
+        listn[0]=1
+        listn[1]=1
+        cnt=0
+        for i in range(2,n):
+            if listn[i]==0:
+                cnt+=1
+                k=1
+                while k*i<n:
+                    listn[k*i]=1
+                    k+=1
+        return cnt
