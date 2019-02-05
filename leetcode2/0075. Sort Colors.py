@@ -4,10 +4,10 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         left=0
-        while nums[left]==0:
+        while left<len(nums) and nums[left]==0:
             left+=1
         right=len(nums)-1
-        while nums[right]==2:
+        while right>=0 and nums[right]==2:
             right-=1
         cur=left
         while cur<=right:
