@@ -1,0 +1,42 @@
+class Solution:
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        if not matrix:
+            return []
+        rep=[]
+        left,right,up,down=0,len(matrix[0])-1,0,len(matrix)-1
+        row,column=0,0
+        while left<=right and up<=down:
+            print(left,right,up,down,row,column)
+            while column<=right and left<=right and up<=down:
+                rep.append(matrix[row][column])
+                column+=1
+            column-=1
+            row+=1
+            up+=1
+            
+            while row<=down and left<=right and up<=down:
+                rep.append(matrix[row][column])
+                row+=1
+            row-=1
+            column-=1
+            right-=1
+            
+            while column>=left and left<=right and up<=down:
+                rep.append(matrix[row][column])
+                column-=1
+            column+=1
+            row-=1
+            down-=1
+            
+            while row>=up and left<=right and up<=down:
+                rep.append(matrix[row][column])
+                row-=1
+            row+=1
+            column+=1
+            left+=1
+            
+        return rep
