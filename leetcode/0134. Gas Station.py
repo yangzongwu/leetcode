@@ -65,3 +65,26 @@ class Solution:
             else:
                 return False
         return True
+######################################################################################
+class Solution:
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        if sum(cost)>sum(gas):
+            return -1
+        gas=gas+gas
+        cost=cost+cost
+        k=0
+        while k<len(gas)//2:
+            rep=0
+            for i in range(k,k+len(gas)//2+1):
+                rep+=gas[i]-cost[i]
+                if rep<0:
+                    k=i+1
+                    break
+            if rep>=0:
+                return k        
+        return -1
