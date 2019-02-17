@@ -24,3 +24,24 @@ class Solution:
             if A[j]==0:
                 return -1
         return cnt
+###########################################################################
+class Solution:
+    def minKBitFlips(self, A: 'List[int]', K: 'int') -> 'int':
+        flag=[]
+        cnt=0
+        for i in range(len(A)):
+            if len(flag)%2==0:
+                if A[i]==0:
+                    cnt+=1
+                    flag.append(i+K-1)
+            else:
+                if A[i]==1:
+                    cnt+=1
+                    flag.append(i+K-1)
+            if flag and flag[0]==i:
+                flag.pop(0)
+            if flag and flag[-1]>=len(A):
+                return -1
+        return cnt
+            
+            
