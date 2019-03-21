@@ -1,10 +1,14 @@
 public class Solution {
-    public int TitleToNumber(string s) {
-        int rep=0;
-        foreach(char c in s){
-            int i=c-64;
-            rep=rep*26+i;
+    public void ReverseString(char[] s) {
+        int left=0;
+        int right=s.Length-1;
+        while(left<right){
+            char tmp=s[left];
+            s[left]=s[right];
+            s[right]=tmp;
+            left++;
+            right--;
         }
-        return rep;
+        
     }
 }
