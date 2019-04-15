@@ -1,0 +1,64 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode RecoverFromPreorder(string S) {
+        List<int> DCount=new List<int>();
+        DCount.Add(0);
+        List<int> SNumberList=new List<int>();
+        
+        int i=0;
+        while(i<S.Length){
+            int cnt=0;
+            if(S[i]=='-'){
+                while(i<S.Length && S[i]=='-'){
+                    cnt++;
+                    i++;
+                }
+                DCount.Add(cnt);
+            }
+            else{
+                int left=i;
+                while(i<S.Length && S[i]!='-'){
+                    cnt++;
+                    i++;
+                }
+                SNumberList.Add(Convert.ToInt32(S.Substring(left,cnt)));
+            }
+        }
+        return RecoverFromPreorder(DCount,SNumberList);
+    }
+    public TreeNode RecoverFromPreorder(List<int> CountList,List<int> NumberList){
+        if(CountList.Count()==0){
+            return null;
+        }
+        TreeNode node=new TreeNode(NumberList[0]);
+        
+        for(int i=0;i<CountList.Count();i++){
+            CountList[i]--;
+        }
+        
+        int k=2;
+        while(k<CountList.Count() && CountList[k]!=0){
+            k++;
+        }
+        
+        if(k>=CountList.Count()){
+            node.left=RecoverFromPreorder(CountList.GetRange(1,CountList.Count()-1),
+                                          NumberList.GetRange(1,CountList.Count()-1));
+        } 
+        else{
+            node.left=RecoverFromPreorder(CountList.GetRange(1,k-1),
+                                          NumberList.GetRange(1,k-1));
+            node.right=RecoverFromPreorder(CountList.GetRange(k,CountList.Count()-k),
+                                           NumberList.GetRange(k,CountList.Count()-k));
+        }
+        return node;
+    }
+}
