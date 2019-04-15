@@ -1,0 +1,25 @@
+public class Solution {
+    public bool DivisorGame(int N) {
+        if(N==1){
+            return false;
+        }
+        if(N==2){
+            return true;
+        }
+        List<bool> dp=new List<bool>();
+        dp.Add(false);
+        dp.Add(false);
+        dp.Add(true);
+        for(int i=3;i<=N;i++){
+            bool flag=false;
+            for(int j=1;j<=i/2;j++){
+                if(i%j==0 && dp[i-j]==false){
+                    flag=true;
+                    break;
+                }
+            }
+            dp.Add(flag);
+        }
+        return dp[N];
+    }
+}
