@@ -1,0 +1,28 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int MaxAncestorDiff(TreeNode root) {
+        return MaxAncestorDiff(root,root.val,root.val);
+    }
+    
+    public int MaxAncestorDiff(TreeNode root,int minVal,int maxVal){
+        if(root==null){
+            return maxVal-minVal;
+        }
+        if(root.val<minVal){
+            minVal=root.val;
+        }
+        if(root.val>maxVal){
+            maxVal=root.val;
+        }
+        return Math.Max(MaxAncestorDiff(root.left,minVal,maxVal),MaxAncestorDiff(root.right,minVal,maxVal));
+        
+    }
+}
