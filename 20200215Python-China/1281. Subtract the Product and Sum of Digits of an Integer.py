@@ -1,4 +1,4 @@
-```
+'''
 Given an integer number n, return the difference between the product of its digits and the sum of its digits.
  
 
@@ -23,7 +23,7 @@ Result = 32 - 11 = 21
 Constraints:
 
 1 <= n <= 10^5
-```
+'''
 class Solution:
     def subtractProductAndSum(self, n: int) -> int:
         sum_n=0
